@@ -1,4 +1,4 @@
-#summary Wiki for CS 373 Project 1: Collatz
+#summary CS 373 Project 1: Collatz
 
 = Design =
 
