@@ -40,8 +40,7 @@ An example (similar to Quiz 3):
 
 Let min = 1, max = 10, m = 5.
 
-Then, the numbers between 1 and 5 can be mapped to numbers between 5 and
-and 10 by one or more doublings, so none of those numbers could have a
+Then, the numbers between 1 and 5 can be mapped to numbers between 5 and 10 by one or more doublings, so none of those numbers could have a
 larger cycle length.
 
 Therefore, max_cycle_length(1, 10) = max_cycle_length(5, 10) and we cut the computation in half.
