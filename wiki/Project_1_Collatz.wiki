@@ -52,3 +52,4 @@ Therefore, max_cycle_length(1, 10) = max_cycle_length(5, 10) and we cut the comp
     ** Without optimizations 1 and 2: 0.796, 0.792, 0.808
     ** With optimizations 1 and 2: 0.852, 0.872, 0.844
     ** One reason might be because of UVa's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
+  * It should also be noted that these metrics were for the java version.  Although UVa does not accept python submissions, the python program runs noticeably slower, most likely because it is an interpreted language.
