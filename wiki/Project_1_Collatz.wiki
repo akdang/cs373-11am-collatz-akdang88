@@ -11,24 +11,41 @@ We were encouraged to start with a simple implementation of algorithm, much like
 = Optimizations =
 
 == Lazy Cache ==
-* The lazy cache is populated with the cycle length of the evaluated number at the very end of computation.
-* On every iteration, the cache is checked before computing 3n+1 or divide by 2
-* If the number being evaluated has a cycle length already stored in cache, that means we've already computed the cycle length for that number before.  So, instead of re-computing, add that cycle length to the current cycle length, and skip the computation.
+  * The lazy cache is populated with the cycle length of the evaluated number at the very end of computation.
+  * On every iteration, the cache is checked before computing 3n+1 or divide by 2
+  * If the number being evaluated has a cycle length already stored in cache, that means we've already computed the cycle length for that number before.  So, instead of re-computing, add that cycle length to the current cycle length, and skip the computation.
 
 == Optimization 1: Skip a step ==
-* Only applies if the number being evaluated, n, is odd
-* (3n + 1) with n odd will always produce an even
-* So, instead of just computing 3n+1, we can skip a step by computing (3n+1)/2 
+  * Only applies if the number being evaluated, n, is odd
+  * (3n + 1) with n odd will always produce an even
+  * So, instead of just computing 3n+1, we can skip a step by computing (3n+1)/2 
 
 Proof from Quiz 2:
+
 (3n + 1) / 2
+
 3n/2 + 1/2
+
 n + n/2 + 1/2
+
 n + n/2 + 1, because n is odd
+
 n + (n >> 1) + 1
 
 == Optimization 2: Compute only the upper half ==
-* 
+  * Given positive integers, min and max, let m = max / 2. 
+  * If min <= m, then max_cycle_length(min, max) = max_cycle_length(m, max)
+
+An example:
+Let min = 1, max = 10, m = 5.
+
+Then, the numbers between 1 and 5 can be mapped to numbers between 5 and
+and 10 by one or more doublings, so none of those numbers could have a
+larger cycle length.
+
+Therefore, max_cycle_length(1, 10) = max_cycle_length(5, 10)
+
+So, we only need to compute the max cycle length for the upper half of the range 
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
