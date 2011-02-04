@@ -36,18 +36,19 @@ n + (n >> 1) + 1
   * Given positive integers, min and max, let m = max / 2. 
   * If min <= m, then max_cycle_length(min, max) = max_cycle_length(m, max)
 
-An example:
+An example (similar to Quiz 3):
+
 Let min = 1, max = 10, m = 5.
 
 Then, the numbers between 1 and 5 can be mapped to numbers between 5 and
 and 10 by one or more doublings, so none of those numbers could have a
 larger cycle length.
 
-Therefore, max_cycle_length(1, 10) = max_cycle_length(5, 10)
+Therefore, max_cycle_length(1, 10) = max_cycle_length(5, 10) and we cut the computation in half.
 
-So, we only need to compute the max cycle length for the upper half of the range 
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Results ==
+  * As per UVa, the lazy cache reduced the time to 0.768
+  * Interestingly, the lazy cache with Optimizations 1 and 2 actually ran slower than with just the lazy cache
+    ** Without optimizations 1 and 2: 0.796, 0.792, 0.808
+    ** With optimizations 1 and 2: 0.852, 0.872, 0.844
+    ** One reason might be because of UVa's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
