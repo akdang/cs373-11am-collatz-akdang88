@@ -13,7 +13,8 @@ We were encouraged to start with a simple implementation of algorithm, much like
 == Lazy Cache ==
   * The lazy cache is populated with the cycle length of the evaluated number at the very end of computation.
   * On every iteration, the cache is checked before computing 3n+1 or divide by 2
-  * If the number being evaluated has a cycle length already stored in cache, that means we've already computed the cycle length for that number before.  So, instead of re-computing, add that cycle length to the current cycle length, and skip the computation.
+  * If the number being evaluated has a cycle length already stored in cache, that means we've already computed the cycle length for that number before.  
+    ** So, instead of re-computing, add that cycle length from the cache to the current cycle length, and skip the computation.
 
 == Optimization 1: Skip a step ==
   * Only applies if the number being evaluated, n, is odd
