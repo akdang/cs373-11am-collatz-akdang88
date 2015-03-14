@@ -1,0 +1,53 @@
+# Algorithm Design #
+
+The algorithm follows the basics of the 3n+1 problem found here:
+http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=3&page=show_problem&problem=36
+
+We were encouraged to start with a simple implementation of algorithm, much like the one in the problem description. Once we were sure the simple solution was correct, a faster solution was implemented using a cache.  I also added two more optimizations that we learned from class.
+
+
+# Optimizations #
+
+## Lazy Cache ##
+  * The lazy cache is populated with the cycle length of the evaluated number at the very end of computation.
+  * On every iteration, the cache is checked before computing 3n+1 or divide by 2
+  * If the number being evaluated has a cycle length already stored in cache, that means we've already computed the cycle length for that number before.
+    * So, instead of re-computing, add that cycle length from the cache to the current cycle length, and skip the computation.
+
+## Optimization 1: Skip a step ##
+  * Only applies if the number being evaluated, n, is odd
+  * (3n + 1) with n odd will always produce an even
+  * So, instead of just computing 3n+1, we can skip a step by computing (3n+1)/2
+
+Proof from Quiz 2:
+
+(3n + 1) / 2
+
+3n/2 + 1/2
+
+n + n/2 + 1/2
+
+n + n/2 + 1, because n is odd
+
+n + (n >> 1) + 1
+
+## Optimization 2: Compute only the upper half ##
+  * Given positive integers, min and max, let m = max / 2.
+  * If min <= m, then max\_cycle\_length(min, max) = max\_cycle\_length(m, max)
+
+An example (similar to Quiz 3):
+
+Let min = 1, max = 10, m = 5.
+
+Then, the numbers between 1 and 5 can be mapped to numbers between 5 and 10 by one or more doublings, so none of those numbers could have a
+larger cycle length.
+
+Therefore, max\_cycle\_length(1, 10) = max\_cycle\_length(5, 10) and we cut the computation in half.
+
+## Results ##
+  * As per UVa, the lazy cache reduced the time to 0.768
+  * Interestingly, the lazy cache with Optimizations 1 and 2 actually ran slower than with just the lazy cache
+    * Without optimizations 1 and 2: 0.796, 0.792, 0.808
+    * With optimizations 1 and 2: 0.852, 0.872, 0.844
+    * One reason might be because of UVa's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
+  * It should also be noted that these metrics were for the java version.  Although UVa does not accept python submissions, the python program runs noticeably slower, most likely because it is an interpreted language.
